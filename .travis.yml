@@ -7,7 +7,31 @@ cache:
 install: npm install
 stages:
 - test
+- deploy-staging
+- deploy-production
 jobs:
   include:
   - stage: test
     script: npm test
+  - stage: deploy-staging
+    script: ignore
+    deploy:
+    - provider: heroku
+      app: petify-backend-staging
+      skip_cleanup: true
+      api_key:
+        secure: f3aoE+/E1IAAW30KTi9VudB4G20rIEmzZdvZ8OG5lknPaskk6cB/hPlOxChUt3c0TTGDhPHD0lE/oCbCIWfiDid97VWVIQ9slly87YKBzLxE4nWbAz4GjBc6EBF4FFrdyTNv46z0cA4Jazha9d0c5O3AHy2b2TCsupBdZQbvnWnJ1lUsNIoeLKalXArQXL68xloyZVvGbWxeMOthz4BP1b11bHuTZxmaq7yMgmz3VMsSqJhEL3NvxyKMj6Yw6nXzx+DZxT5HEpyCVFcAkOspYwuFap9HFyIk8oXb4DpyS0qTMt3qBCFFakf/HnA/h3Tr7dV4YoyQgO8YE1veHvDsb9p3/NpsK2oa2VGXdasm6/rYo/d2UmiZcrtYt7Lz0v1e/CatZ6j0/YKGvd+yBa0nuI7Xe403Sj6y3mkMUPYd8zDuaTnFfDsamVSqTlWjFrOojanYEm3IKuF0HJXG217B4Xpg9Ln7Dlm+GJdA5K7n01m9+f2QC+bn17DY/bVg/F6fKjOom9owGstItUPD0Mo85zdjPmtHTlyrBB/1I5zAaDcTi6XEWXHF86OSnp6aJ3dGkLkxbxNWkk6k2aUtqJH1YAskd2xHE9uvkjMBWREHcI+zNw1BsdGQK75ddQRBJkumgYYpMy5yLSNeKejbQligssmnvPk7r11c8PE7Zt+a6kE=
+      on:
+        branch: development
+        repo: tdp2-1c2019/petify-backend
+  - stage: deploy-production
+      script: ignore
+      deploy:
+      - provider: heroku
+        app: petify-backend
+        skip_cleanup: true
+        api_key:
+          secure: PvzUHGtnSFgtsZaT+QQTwvDOoHdjxfgoR4zz850e3Xi0Om0v/myDRAERrC1bNo0ojUQ1C2ppzEIHU/K7epd3m4ALzW4FoYNnBlhg4gR1SCLTWZE+WHhSi1nSLLovKaPaIHv848lZbuMtWlH2Djy+NZ4usYUcFW0IKDtu5c34Xp5V98P1a8Ntgq7x28BwBVNkFViE6Y+FOHVlHPMa+t+5IIw0LBOq3YX9TPAVuR3uGKKp4te2Ka7cEhAtx6dY5JyEsr7U7AKDtT0j13ZhrjLcuutJMT5aSLJkLn5GOVYFfpSVWAeSFqbZGjikCd4nZVcKKvVqrezHSgyQ2eDfzF93xzMrwiW5FiR0bETkRQhXWQmFTc8O9dolgqI16260regOOw7/1ARjX/+g71WxGjMtey98BL7Wjz8e4UnST6VEACOFK4/C3x4I5VxKwlFoKZ8w7Z6/ORVFI/6+bzBwyjF58N1u5KyKu0gx3rcrpravewA9JdDFkbWcRSbpyiFdDXcyLi5QeDfUxZJr550MHo0vKsUqojSk9VQwSA1URnTv+PX2m9ZVuL1/mcTK1wZm022N+czrHZlClousbYY+X3AE88z8ZMxTSRKYm5Ntc/horsHSqbGDT0FO0PKAUcv3/pUO4QUK3wz31jdnEvu4xHyHp+ZyZgeQEUQ/15P09HmXIek=
+        on:
+          branch: master
+          repo: tdp2-1c2019/petrify-backend
