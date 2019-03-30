@@ -5,6 +5,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const Logger = require('./utils/logger.js');
 const clientsRouter = require('./middlewares/routers/clients_router.js');
+const driversRouter = require('./middlewares/routers/drivers_router.js');
 const ConnectionPoolFactory = require('./lib/factories/connection_pool_factory.js');
 const errorMiddleware = require('./middlewares/main_error_handler.js');
 
@@ -20,6 +21,7 @@ app.use(cors());
 
 // Add routers to the API
 clientsRouter(app, logger, postgrePool);
+driversRouter(app, logger, postgrePool);
 
 // Add basic error middleware to handle all errors
 errorMiddleware(app, logger);
