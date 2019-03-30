@@ -1,0 +1,10 @@
+{
+  "type": "object",
+  "properties":{
+    "facebook_id": { "type": "string" },
+    "facebook_token": { "type": "string" }
+  },
+  "required": ["facebook_id", "facebook_token"],
+  "minProperties": 2,
+  "maxProperties": 2
+}

@@ -1,0 +1,10 @@
+{
+  "express": {
+    "Host": "0.0.0.0",
+    "Port": 8080
+  },
+  "GOOGLE_CLOUD_PROJECT_ID": "petify-tdp2.appspot.com",
+  "GOOGLE_CLOUD_BUCKET_NAME": "petify-tdp2.appspot.com",
+  "FILES_DIRECTORY": "uploads",
+  "DATABASE_URL": "postgres://stigxgavkglsof:7ddc60461362e6f151aed9430e8f262aca18b3726193cf22b260998264fb758f@ec2-184-72-238-22.compute-1.amazonaws.com:5432/dap56q1q8q8p1h?ssl=true"
+}

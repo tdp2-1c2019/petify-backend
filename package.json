@@ -1,0 +1,41 @@
+{
+  "name": "petify-backend",
+  "main": "src/app.js",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": "8.9.0"
+  },
+  "scripts": {
+    "lint": "eslint src test",
+    "test": "NODE_ENV=test mocha --recursive --exit --timeout 60000",
+    "test_db_init": "NODE_ENV=test node ./config/db_creation.js",
+    "test_db_cleanup": "NODE_ENV=test node ./config/db_cleanup.js",
+    "prod_db_init": "NODE_ENV=production node ./config/db_creation.js",
+    "start": "node ./src/app.js",
+    "debug": "NODE_ENV=test node ./src/app.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "config": "^3.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^7.0.0",
+    "express": "^4.16.4",
+    "express-formidable": "^1.2.0",
+    "jsonschema": "^1.2.4",
+    "pg": "^7.9.0",
+    "request": "^2.88.0",
+    "request-promise-native": "^1.0.7",
+    "uuid": "^3.3.2",
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "expect.js": "^0.3.1",
+    "eslint": "^5.15.3",
+    "eslint-config-google": "^0.9.1",
+    "mocha": "^6.0.2",
+    "proxyquire": "^2.1.0",
+    "sinon": "^7.3.1",
+    "supertest": "^4.0.2"
+  }
+}
