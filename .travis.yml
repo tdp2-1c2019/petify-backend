@@ -25,13 +25,13 @@ jobs:
         branch: development
         repo: tdp2-1c2019/petify-backend
   - stage: deploy-production
-      script: ignore
-      deploy:
-      - provider: heroku
-        app: petify-backend
-        skip_cleanup: true
-        api_key:
-          secure: PvzUHGtnSFgtsZaT+QQTwvDOoHdjxfgoR4zz850e3Xi0Om0v/myDRAERrC1bNo0ojUQ1C2ppzEIHU/K7epd3m4ALzW4FoYNnBlhg4gR1SCLTWZE+WHhSi1nSLLovKaPaIHv848lZbuMtWlH2Djy+NZ4usYUcFW0IKDtu5c34Xp5V98P1a8Ntgq7x28BwBVNkFViE6Y+FOHVlHPMa+t+5IIw0LBOq3YX9TPAVuR3uGKKp4te2Ka7cEhAtx6dY5JyEsr7U7AKDtT0j13ZhrjLcuutJMT5aSLJkLn5GOVYFfpSVWAeSFqbZGjikCd4nZVcKKvVqrezHSgyQ2eDfzF93xzMrwiW5FiR0bETkRQhXWQmFTc8O9dolgqI16260regOOw7/1ARjX/+g71WxGjMtey98BL7Wjz8e4UnST6VEACOFK4/C3x4I5VxKwlFoKZ8w7Z6/ORVFI/6+bzBwyjF58N1u5KyKu0gx3rcrpravewA9JdDFkbWcRSbpyiFdDXcyLi5QeDfUxZJr550MHo0vKsUqojSk9VQwSA1URnTv+PX2m9ZVuL1/mcTK1wZm022N+czrHZlClousbYY+X3AE88z8ZMxTSRKYm5Ntc/horsHSqbGDT0FO0PKAUcv3/pUO4QUK3wz31jdnEvu4xHyHp+ZyZgeQEUQ/15P09HmXIek=
-        on:
-          branch: master
-          repo: tdp2-1c2019/petrify-backend
+    script: ignore
+    deploy:
+    - provider: heroku
+      app: petify-backend
+      skip_cleanup: true
+      api_key:
+        secure: PvzUHGtnSFgtsZaT+QQTwvDOoHdjxfgoR4zz850e3Xi0Om0v/myDRAERrC1bNo0ojUQ1C2ppzEIHU/K7epd3m4ALzW4FoYNnBlhg4gR1SCLTWZE+WHhSi1nSLLovKaPaIHv848lZbuMtWlH2Djy+NZ4usYUcFW0IKDtu5c34Xp5V98P1a8Ntgq7x28BwBVNkFViE6Y+FOHVlHPMa+t+5IIw0LBOq3YX9TPAVuR3uGKKp4te2Ka7cEhAtx6dY5JyEsr7U7AKDtT0j13ZhrjLcuutJMT5aSLJkLn5GOVYFfpSVWAeSFqbZGjikCd4nZVcKKvVqrezHSgyQ2eDfzF93xzMrwiW5FiR0bETkRQhXWQmFTc8O9dolgqI16260regOOw7/1ARjX/+g71WxGjMtey98BL7Wjz8e4UnST6VEACOFK4/C3x4I5VxKwlFoKZ8w7Z6/ORVFI/6+bzBwyjF58N1u5KyKu0gx3rcrpravewA9JdDFkbWcRSbpyiFdDXcyLi5QeDfUxZJr550MHo0vKsUqojSk9VQwSA1URnTv+PX2m9ZVuL1/mcTK1wZm022N+czrHZlClousbYY+X3AE88z8ZMxTSRKYm5Ntc/horsHSqbGDT0FO0PKAUcv3/pUO4QUK3wz31jdnEvu4xHyHp+ZyZgeQEUQ/15P09HmXIek=
+      on:
+        branch: master
+        repo: tdp2-1c2019/petrify-backend
