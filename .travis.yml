@@ -20,7 +20,7 @@ jobs:
       app: petify-backend-staging
       skip_cleanup: true
       api_key:
-        secure: RnefBt4QsI6vtSGyAPefJYnApbfQVGCasVisjMIPfI/R8h5tqIHmm9RlxPnSanDSn0bpqxMr0+Y+bgJiPu8Z4DbVej5dhHo7ojyTAAo63P8fNwmutHq3Dc1OsqTJOuacYyQgV0kP6ncCA/vo4Tzrze3pNNrtZLjtznpvPcgoGw0Up6mu8hJZM+3UPS+18UMFXIlcMLeJwPGrU2TJ64K41jmyySObLsDHvQ/6wB0IPWBFECEHEhIjdTEnv8C1u1iJ6/n/sdjIcE8aZRlIoKRjgCdLicQxyxnvd/7Ng7BkxsaEAI+UAb4FdkHnuYgKtsW8HGPqhU9PPWHGDqn3lXabDQ1v4Ix1/1AI/rK3BxVs8FBwVW0kEl720pFh/B4Pg0Ngs3+qpmu9i8gK7RfHriLwNBuR7JOlFbHumImv1+rwJt2PaOoCzgaPFpPIL1nZR8xAg9QwI6Jrkc6pRZoTylbQVjBzkZyBmH/teOWCdDTsI6FpWNerlMua/6KVfCKopzix9HzpIE7m20xOie+GO/px3hFok4WEh3LAFZlF9q45sLGwnvswBZKoyMG+XOugULjwbiZPWsJdm8+wwmPaIONp2bHyTbTiCm/3iGwHKqX8+5/eJRfZam7/cH018W6xjZ75SZhtkLSPBHXVMUbJ5UrRgLxR+y9HZinzq0BI5efLc5M=
+        secure: Wk/UAB0/5BUrDgjx4FMSG6028zQVmIGbk3ae+c4Wm7bLKQSoFL4r2HsiGptQ1tZqrgeBgJ+75msw1JVsMwMKLvEoJl5nR78ZD/GRu7Q6Ev9sq1vum3npJ1NCirS74u7kKaXO7780QZx3hdHqup6Bwj+2ouey6CkdZ/QZEHMrGFBkrpo2+8IyQiv02g90NSybmpvgqQ+TM0mDMSWGBNer0LyksRY6w7PGjS3VD4qvbOy+zzbW5bt26WPSgIzMv8+q/oIizlseDa8SrNV/0qLwqHkmrX8iRaBmx7qLX8hV4o0sy2V9iEVivZd2+FOk17WIoGvt2Nfu/qFZYQm5se1qp63utEewniAwUL6Gd0LIMqD3Lrklj7AQ9NIVougcZvhlwm98L4tqTZ1bwsS9LvqrpJk73bEM9DJSm7s4ZsjYBocIQR5gg/z9s0IeDey/UZPXniCNE7UwSQOqNKMFQpMrP6fa1OgG0PB48Zk/IRSuiIpb8srcWj5OmYJL8jHjJ4CwRYtEifuc5GCreZOJpq3Apvb2qXOpVCmbbJF6huQf7a6f8TsWgEEg6hHLoGnzTtfSGa/AtT1h8LWJ/DDRkaxAV3nQrJci58nQ/kBkZsLx+iIJ/QTrthAR6UMyM1UxdcxHXzrKOcthselqMUW4UkL7kFnuaTcInX2j4GbmWotsdtE=
       on:
         branch: development
         repo: tdp2-1c2019/petify-backend
@@ -34,4 +34,4 @@ jobs:
         secure: NXPm83PgkaxOHUK6g6ljsUebaWxCIxFExtTbGBiZqbn7e85aFChhyexKACVAlDSvvYCo+spO66GSpWilpCxrfxOLRWLHgn/23XcotOXO8JTFSbhOoDBriVTeA2Er+lzvg/cDAgJuJpqAa1tIOHE0n4gKsXZJuZUCoCrV67EdUiNMc67Lwn8FOw31vr0gv3xD2YvmNT+iZMIx1MGK/10xueiz9N+bRhgJtebL8TwVnAyNz4ppoZIvzqIiCOrCo/Z5XtUHBqW/U+L/3Mr4yGNdLuvft7QJcOLvZ10rDpVSZ5KCHFkIVAxxwPG6M0kaYBUiammMVweQOOtUpKLApfZQNMuYId8BipACFd7Rw4n3/5ptr+ZSAEDxjTEnnlk3W+YAAQQrh30gqf9d0N34xkwRoIPRajAimWOeoK4Dvy6RKBafcx02t40iSljeT9tYjdh5kcTFmpVnY6ODgCaaKNIjTraXN/FJmhKCHE4x90HbE+8NgontsfsmL1NK+bYMDMOJqKbgsxHC0b0eS7+KMWRpIQttd9qsZvFYalDb9ivi52QPKN8Km5fTDtZNeSFHRqV66D+SJDK3BOYYY7v5U3/WPOJpyzFbGgKTD6gqQcGgRNX3Ssg/dwCS4hw17Oc59g2HywlV2URZ4sjNfua26TDJjb2uRX55cXupCl3my4Vd0t4=
       on:
         branch: master
-        repo: tdp2-1c2019/petrify-backend
+        repo: tdp2-1c2019/petify-backend
