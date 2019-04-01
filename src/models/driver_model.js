@@ -6,13 +6,12 @@ function DriverModel(logger, postgrePool) {
     return {
       driver_id: dbDriver.driver_id,
       facebook_id: dbDriver.facebook_id,
-      facebook_token: dbDriver.facebook_token,
       driver_state: dbDriver.driver_state
     };
   };
 
   async function findByFacebookIdReturnAllParams(facebook_id) {
-    let query = 'SELECT driver_id, facebook_id, facebook_token, driver_state FROM drivers WHERE facebook_id = $1;';
+    let query = 'SELECT driver_id, facebook_id, driver_state FROM drivers WHERE facebook_id = $1;';
     let values = [facebook_id];
     try {
       let response = await executeQuery(query, values);
@@ -33,7 +32,7 @@ function DriverModel(logger, postgrePool) {
   }
 
   async function findByDriverIdReturnAllParams(driverId) {
-    let query = 'SELECT driver_id, facebook_id, facebook_token, driver_state FROM drivers WHERE driver_id = $1;';
+    let query = 'SELECT driver_id, facebook_id, driver_state FROM drivers WHERE driver_id = $1;';
     let values = [driverId];
     try {
       let res = await executeQuery(query, values);
@@ -61,8 +60,8 @@ function DriverModel(logger, postgrePool) {
   };
 
   this.create = async (driver) => {
-    let query = 'INSERT INTO drivers(facebook_id, facebook_token) VALUES ($1, $2) RETURNING driver_id, facebook_id, facebook_token, driver_state;';
-    let values = [driver.facebook_id, driver.facebook_token ];
+    let query = 'INSERT INTO drivers(facebook_id) VALUES ($1) RETURNING driver_id, facebook_id, driver_state;';
+    let values = [driver.facebook_id];
     let response;
     try {
       response = await executeQuery(query, values);

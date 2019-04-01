@@ -13,6 +13,11 @@ function DriversRouter(app, logger, postgrePool) {
     _driverController.createDriver,
     _driverResponseBuilder.buildResponse
   );
+
+  app.get('/api/driver',
+    _driverController.findDriver,
+    _driverResponseBuilder.buildResponse
+  );
 }
 
 

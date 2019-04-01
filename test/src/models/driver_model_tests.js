@@ -40,7 +40,7 @@ describe('DriverModel Tests', () => {
     describe('driver found', () => {
       before(() => {
         mockDb.query.resolves({ rows:
-            [{ driver_id: 123, facebook_id: 'id', facebook_token: 'token', driver_state: 'AVAILABLE'} ] } );
+            [{ driver_id: 123, facebook_id: 'id', driver_state: 'AVAILABLE'} ] } );
       });
 
       it('returns driver', async () => {
@@ -48,7 +48,6 @@ describe('DriverModel Tests', () => {
         expect(driver).to.be.ok();
         expect(driver.driver_id).to.be(123);
         expect(driver.facebook_id).to.be('id');
-        expect(driver.facebook_token).to.be('token');
         expect(driver.driver_state).to.be('AVAILABLE');
       });
 
@@ -107,13 +106,11 @@ describe('DriverModel Tests', () => {
 
   describe('#create', () => {
     let mockDriver = {
-      facebook_id: 'id',
-      facebook_token: 'token',
+      facebook_id: 'id'
     };
 
     let mockDbDriver = {
       facebook_id: 'id',
-      facebook_token: 'token',
       driver_id: 123,
       driver_state: 'AVAILABLE',
     };
@@ -125,14 +122,13 @@ describe('DriverModel Tests', () => {
 
       it('passes correct values to insert query', async () => {
         await driverModel.create(mockDriver);
-        expect(mockDb.query.getCall(0).args[1]).to.eql(['id', 'token']);
+        expect(mockDb.query.getCall(0).args[1]).to.eql(['id']);
       });
 
       it('returns updated driver', async () => {
         let driver = await driverModel.create(mockDriver);
         expect(driver.driver_id).to.be(123);
         expect(driver.facebook_id).to.be('id');
-        expect(driver.facebook_token).to.be('token');
         expect(driver.driver_state).to.be('AVAILABLE');
       });
     });
@@ -147,7 +143,7 @@ describe('DriverModel Tests', () => {
           await driverModel.create(mockDriver);
         } catch (err) { }
         expect(mockDb.query.calledOnce);
-        expect(mockDb.query.getCall(0).args[1]).to.eql(['id', 'token']);
+        expect(mockDb.query.getCall(0).args[1]).to.eql(['id']);
       });
 
       it('returns error', async function() {

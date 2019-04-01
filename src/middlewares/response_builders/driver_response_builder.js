@@ -7,7 +7,6 @@ function DriverResponseBuilder(logger) {
     let response = getBasicResponse();
     response.driver.id = driver.driver_id;
     response.driver.facebook_id = driver.facebook_id;
-    response.driver.facebook_token = driver.facebook_token;
     response.driver.state = driver.driver_state;
     _logger.debug('Response: %j', response);
     res.status(201).json(response);
@@ -18,7 +17,6 @@ function DriverResponseBuilder(logger) {
       driver: {
         id: '',
         facebook_id: '',
-        facebook_token: '',
         state: '',
       },
     };

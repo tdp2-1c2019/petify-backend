@@ -16,7 +16,7 @@ function ClientModel(logger, postgrePool) {
   };
 
   async function findByFacebookIdReturnAllParams(facebook_id) {
-    let query = 'SELECT client_id, facebook_id, facebook_token, client_state, birth_date, full_address, full_name, phone_number FROM clients WHERE facebook_id = $1;';
+    let query = 'SELECT client_id, facebook_id, client_state, birth_date, full_address, full_name, phone_number FROM clients WHERE facebook_id = $1;';
     let values = [facebook_id];
     try {
       let response = await executeQuery(query, values);
@@ -37,7 +37,7 @@ function ClientModel(logger, postgrePool) {
   }
 
   async function findByClientIdReturnAllParams(clientId) {
-    let query = 'SELECT client_id, facebook_id, facebook_token, client_state, birth_date, full_address, full_name, phone_number FROM clients WHERE client_id = $1;';
+    let query = 'SELECT client_id, facebook_id, client_state, birth_date, full_address, full_name, phone_number FROM clients WHERE client_id = $1;';
     let values = [clientId];
     try {
       let res = await executeQuery(query, values);
@@ -65,8 +65,8 @@ function ClientModel(logger, postgrePool) {
   };
 
   this.create = async (client) => {
-    let query = 'INSERT INTO clients(facebook_id, facebook_token, birth_date, full_address, full_name, phone_number) VALUES ($1, $2, $3, $4, $5, $6) RETURNING client_id, facebook_id, facebook_token, client_state, birth_date, full_address, full_name, phone_number;';
-    let values = [client.facebook_id, client.facebook_token, client.birth_date, client.full_address, client.full_name, client.phone_number ];
+    let query = 'INSERT INTO clients(facebook_id, birth_date, full_address, full_name, phone_number) VALUES ($1, $2, $3, $4, $5) RETURNING client_id, facebook_id, client_state, birth_date, full_address, full_name, phone_number;';
+    let values = [client.facebook_id, client.birth_date, client.full_address, client.full_name, client.phone_number ];
     let response;
     try {
       response = await executeQuery(query, values);

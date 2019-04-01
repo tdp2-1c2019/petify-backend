@@ -7,8 +7,7 @@ function ClientService(logger, postgrePool) {
 
   this.createClient = async (body) => {
     let clientData = {
-      facebook_id: body.facebook_id,
-      facebook_token: body.facebook_token,
+      facebook_id: body.facebook_id
     };
     let err;
     try {
@@ -34,18 +33,18 @@ function ClientService(logger, postgrePool) {
     }
   };
 
-  this.findClient = async (clientId) => {
+  this.findClient = async (facebookId) => {
     let client;
     try {
-      client = await _clientModel.findByClientId(clientId);
+      client = await _clientModel.findByFacebookId(facebookId);
     } catch (findErr) {
-      _logger.error('An error happened while looking for the client with id: \'%s\'', clientId);
+      _logger.error('An error happened while looking for the client with facebook_id: \'%s\'', facebookId);
       throw new BaseHttpError('Client find error', 500);
     }
     if (client) {
       return client;
     } else {
-      _logger.error('The client with id: \'%s\' was not found', clientId);
+      _logger.error('The client with facebook_id: \'%s\' was not found', facebookId);
       throw new BaseHttpError('Client does not exist', 404);
     }
   };

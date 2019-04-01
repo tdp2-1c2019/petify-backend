@@ -14,6 +14,18 @@ function ClientController(logger, postgrePool) {
       return next(err);
     }
   };
+
+  this.findClient = async (req, res, next) => {
+    let clientFound;
+    try {
+      clientFound = await _clientService.findClient(req.query.facebook_id);
+    } catch (err) {
+      _logger.error('An error occurred while finding client with facebook_id: %s', req.query.facebook_id);
+      return next(err);
+    }
+    res.client = clientFound;
+    return next();
+  };
 }
 
 module.exports = ClientController;

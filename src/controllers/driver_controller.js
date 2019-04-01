@@ -14,6 +14,18 @@ function DriverController(logger, postgrePool) {
       return next(err);
     }
   };
+
+  this.findDriver = async (req, res, next) => {
+    let driverFound;
+    try {
+      driverFound = await _driverService.findDriver(req.query.facebook_id);
+    } catch (err) {
+      _logger.error('An error occurred while finding driver with facebook_id: %s', req.query.facebook_id);
+      return next(err);
+    }
+    res.driver = driverFound;
+    return next();
+  };
 }
 
 module.exports = DriverController;

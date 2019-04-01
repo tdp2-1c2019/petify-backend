@@ -13,6 +13,11 @@ function ClientsRouter(app, logger, postgrePool) {
     _clientController.createClient,
     _clientResponseBuilder.buildResponse
   );
+
+  app.get('/api/client',
+    _clientController.findClient,
+    _clientResponseBuilder.buildResponse
+  );
 }
 
 
