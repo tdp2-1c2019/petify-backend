@@ -17,7 +17,6 @@ describe('DriverResponserBuilder Tests', function() {
       driver: {
         driver_id: 123456789,
         facebook_id: 'facebook_id',
-        facebook_token: 'token',
         driver_state: 'AVAILABLE',
       },
       status: function(statusCode) {
@@ -37,15 +36,13 @@ describe('DriverResponserBuilder Tests', function() {
 
     it('passes status and response', function() {
       expect(passedStatusCode).to.be(201);
-      expect(returnedResponse).to.be.eql({ driver: { id: 123456789, facebook_id: 'facebook_id',
-          facebook_token: 'token', state: 'AVAILABLE' } });
+      expect(returnedResponse).to.be.eql({ driver: { id: 123456789, facebook_id: 'facebook_id', state: 'AVAILABLE' } });
     });
 
     it('logs response', function() {
       expect(mockLogger.debug.calledOnce);
       expect(mockLogger.debug.getCall(0).args[0]).to.be('Response: %j');
-      expect(mockLogger.debug.getCall(0).args[1]).to.be.eql( { driver: { id: 123456789, facebook_id: 'facebook_id',
-          facebook_token: 'token', state: 'AVAILABLE' } });
+      expect(mockLogger.debug.getCall(0).args[1]).to.be.eql( { driver: { id: 123456789, facebook_id: 'facebook_id', state: 'AVAILABLE' } });
     });
   });
 });

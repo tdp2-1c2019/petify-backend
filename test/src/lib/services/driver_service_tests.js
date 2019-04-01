@@ -40,8 +40,7 @@ describe('DriverService Tests', () => {
 
     describe('create success', () => {
       before(() => {
-        mockDriverModel.create.resolves({ driver_id: 1, facebook_id: 'facebook_id',
-          facebook_token: 'token', driver_state: 'AVAILABLE', });
+        mockDriverModel.create.resolves({ driver_id: 1, facebook_id: 'facebook_id', driver_state: 'AVAILABLE', });
       });
 
       it('returns driver', async () => {
@@ -49,7 +48,6 @@ describe('DriverService Tests', () => {
         expect(driver).to.be.ok();
         expect(driver.driver_id).to.be(1);
         expect(driver.facebook_id).to.be('facebook_id');
-        expect(driver.facebook_token).to.be('token');
         expect(driver.driver_state).to.be('AVAILABLE');
       });
     });
@@ -61,8 +59,7 @@ describe('DriverService Tests', () => {
 
       describe('driver found', () => {
         before(() => {
-          mockDriverModel.findByFacebookId.resolves({ driver_id: 1, facebook_id: 'facebook_id',
-            facebook_token: 'token', driver_state: 'AVAILABLE', });
+          mockDriverModel.findByFacebookId.resolves({ driver_id: 1, facebook_id: 'facebook_id', driver_state: 'AVAILABLE', });
         });
 
         it('returns error', async () => {
@@ -95,6 +92,62 @@ describe('DriverService Tests', () => {
           expect(err.statusCode).to.be(500);
           expect(err.message).to.be('Driver creation error');
         });
+      });
+    });
+  });
+
+  describe('#findDriver', () => {
+    let mockBody = {
+      facebook_id: 'facebook_id',
+    };
+
+    describe('driver found', () => {
+      before(() => {
+        mockDriverModel.findByFacebookId.resolves({ driver_id: 1, facebook_id: 'facebook_id', driver_state: 'ACTIVE' });
+      });
+
+      it('returns driver', async () => {
+        let driver = await driverService.findDriver(mockBody);
+        expect(driver).to.be.ok();
+        expect(driver.driver_id).to.be(1);
+        expect(driver.facebook_id).to.be('facebook_id');
+        expect(driver.driver_state).to.be('ACTIVE');
+      });
+    });
+
+    describe('driver not found', () => {
+      before(() => {
+        mockDriverModel.findByFacebookId.resolves();
+      });
+
+      it('throws 404 error', async () => {
+        let err;
+        try {
+          await driverService.findDriver(mockBody);
+        } catch (ex) {
+          err = ex;
+        }
+        expect(err).to.be.a(BaseHttpError);
+        expect(err.statusCode).to.be(404);
+        expect(err.message).to.be('Driver does not exist');
+      });
+    });
+
+    describe('find failure', () => {
+      before(() => {
+        mockDriverModel.findByFacebookId.rejects(new Error('Find error'));
+      });
+
+      it('throws 500 error', async () => {
+        let err;
+        try {
+          await driverService.findDriver(mockBody);
+        } catch (ex) {
+          err = ex;
+        }
+        expect(err).to.be.a(BaseHttpError);
+        expect(err.statusCode).to.be(500);
+        expect(err.message).to.be('Driver find error');
       });
     });
   });

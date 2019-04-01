@@ -7,8 +7,7 @@ function DriverService(logger, postgrePool) {
 
   this.createDriver = async (body) => {
     let driverData = {
-      facebook_id: body.facebook_id,
-      facebook_token: body.facebook_token,
+      facebook_id: body.facebook_id
     };
     let err;
     try {
@@ -37,7 +36,7 @@ function DriverService(logger, postgrePool) {
   this.findDriver = async (driverId) => {
     let driver;
     try {
-      driver = await _driverModel.findByDriverId(driverId);
+      driver = await _driverModel.findByFacebookId(driverId);
     } catch (findErr) {
       _logger.error('An error happened while looking for the driver with id: \'%s\'', driverId);
       throw new BaseHttpError('Driver find error', 500);

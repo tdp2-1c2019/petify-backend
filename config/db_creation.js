@@ -19,7 +19,6 @@ $$ LANGUAGE plpgsql;`;
 const clientsTableCreationQuery = `CREATE TABLE clients (
   client_id serial PRIMARY KEY,
   facebook_id varchar(100) UNIQUE NOT NULL,
-  facebook_token varchar(100) NOT NULL,
   client_state varchar(50) NOT NULL DEFAULT 'ACTIVE',
   birth_date date,
   full_address varchar(200),
@@ -31,7 +30,6 @@ const clientsTableCreationQuery = `CREATE TABLE clients (
 const driversTableCreationQuery = `CREATE TABLE drivers (
   driver_id serial PRIMARY KEY,
   facebook_id varchar(100) UNIQUE NOT NULL,
-  facebook_token varchar(100) NOT NULL,
   driver_state varchar(50) NOT NULL DEFAULT 'AVAILABLE',
   created_time timestamp NOT NULL DEFAULT NOW()
 );`;

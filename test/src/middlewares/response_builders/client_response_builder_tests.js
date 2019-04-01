@@ -17,7 +17,6 @@ describe('ClientResponserBuilder Tests', function() {
       client: {
         client_id: 123456789,
         facebook_id: 'facebook_id',
-        facebook_token: 'token',
         client_state: 'ACTIVE',
         birth_date: '1999-09-09',
         full_address: 'address',
@@ -41,14 +40,14 @@ describe('ClientResponserBuilder Tests', function() {
 
     it('passes status and response', function() {
       expect(passedStatusCode).to.be(201);
-      expect(returnedResponse).to.be.eql({ client: { id: 123456789, facebook_id: 'facebook_id', facebook_token: 'token', state: 'ACTIVE', birth_date: '1999-09-09',
+      expect(returnedResponse).to.be.eql({ client: { id: 123456789, facebook_id: 'facebook_id', state: 'ACTIVE', birth_date: '1999-09-09',
           full_address: 'address', full_name: 'John Doe', phone_number: '123456789' } });
     });
 
     it('logs response', function() {
       expect(mockLogger.debug.calledOnce);
       expect(mockLogger.debug.getCall(0).args[0]).to.be('Response: %j');
-      expect(mockLogger.debug.getCall(0).args[1]).to.be.eql( { client: { id: 123456789, facebook_id: 'facebook_id', facebook_token: 'token', state: 'ACTIVE', birth_date: '1999-09-09',
+      expect(mockLogger.debug.getCall(0).args[1]).to.be.eql( { client: { id: 123456789, facebook_id: 'facebook_id', state: 'ACTIVE', birth_date: '1999-09-09',
           full_address: 'address', full_name: 'John Doe', phone_number: '123456789' } });
     });
   });

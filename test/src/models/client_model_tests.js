@@ -40,7 +40,7 @@ describe('ClientModel Tests', () => {
     describe('client found', () => {
       before(() => {
         mockDb.query.resolves({ rows:
-            [{ client_id: 123, facebook_id: 'id', facebook_token: 'token', client_state: 'ACTIVE', birth_date: '1999-09-09',
+            [{ client_id: 123, facebook_id: 'id', client_state: 'ACTIVE', birth_date: '1999-09-09',
             full_address: 'address', full_name: 'John Doe', phone_number: '123456789'}] });
       });
 
@@ -49,7 +49,6 @@ describe('ClientModel Tests', () => {
         expect(client).to.be.ok();
         expect(client.client_id).to.be(123);
         expect(client.facebook_id).to.be('id');
-        expect(client.facebook_token).to.be('token');
         expect(client.client_state).to.be('ACTIVE');
         expect(client.birth_date).to.be('1999-09-09');
         expect(client.full_address).to.be('address');
@@ -113,7 +112,6 @@ describe('ClientModel Tests', () => {
   describe('#create', () => {
     let mockClient = {
       facebook_id: 'id',
-      facebook_token: 'token',
       birth_date: '1999-09-09',
       full_address: 'address',
       full_name: 'John Doe',
@@ -122,7 +120,6 @@ describe('ClientModel Tests', () => {
 
     let mockDbClient = {
       facebook_id: 'id',
-      facebook_token: 'token',
       client_id: 123,
       client_state: 'ACTIVE',
       birth_date: '1999-09-09',
@@ -138,14 +135,13 @@ describe('ClientModel Tests', () => {
 
       it('passes correct values to insert query', async () => {
         await clientModel.create(mockClient);
-        expect(mockDb.query.getCall(0).args[1]).to.eql(['id', 'token', '1999-09-09', 'address', 'John Doe', '123456789']);
+        expect(mockDb.query.getCall(0).args[1]).to.eql(['id', '1999-09-09', 'address', 'John Doe', '123456789']);
       });
 
       it('returns updated client', async () => {
         let client = await clientModel.create(mockClient);
         expect(client.client_id).to.be(123);
         expect(client.facebook_id).to.be('id');
-        expect(client.facebook_token).to.be('token');
         expect(client.client_state).to.be('ACTIVE');
         expect(client.birth_date).to.be('1999-09-09');
         expect(client.full_address).to.be('address');
@@ -164,7 +160,7 @@ describe('ClientModel Tests', () => {
           await clientModel.create(mockClient);
         } catch (err) { }
         expect(mockDb.query.calledOnce);
-        expect(mockDb.query.getCall(0).args[1]).to.eql(['id', 'token', '1999-09-09', 'address', 'John Doe', '123456789']);
+        expect(mockDb.query.getCall(0).args[1]).to.eql(['id', '1999-09-09', 'address', 'John Doe', '123456789']);
       });
 
       it('returns error', async function() {

@@ -35,7 +35,6 @@ describe('ClientService Tests', () => {
   describe('#createClient', () => {
     let mockBody = {
       facebook_id: 'facebook_id',
-      facebook_token: 'token',
       birth_date: '1999-09-09',
       full_address: 'address',
       full_name: 'John Doe',
@@ -44,7 +43,7 @@ describe('ClientService Tests', () => {
 
     describe('create success', () => {
       before(() => {
-        mockClientModel.create.resolves({ client_id: 1, facebook_id: 'facebook_id', facebook_token: 'token', client_state: 'ACTIVE', birth_date: '1999-09-09',
+        mockClientModel.create.resolves({ client_id: 1, facebook_id: 'facebook_id', client_state: 'ACTIVE', birth_date: '1999-09-09',
           full_address: 'address', full_name: 'John Doe', phone_number: '123456789' });
       });
 
@@ -53,7 +52,6 @@ describe('ClientService Tests', () => {
         expect(client).to.be.ok();
         expect(client.client_id).to.be(1);
         expect(client.facebook_id).to.be('facebook_id');
-        expect(client.facebook_token).to.be('token');
         expect(client.client_state).to.be('ACTIVE');
         expect(client.birth_date).to.be('1999-09-09');
         expect(client.full_address).to.be('address');
@@ -69,7 +67,7 @@ describe('ClientService Tests', () => {
 
       describe('client found', () => {
         before(() => {
-          mockClientModel.findByFacebookId.resolves({ client_id: 1, facebook_id: 'facebook_id', facebook_token: 'token', client_state: 'ACTIVE', birth_date: '1999-09-09',
+          mockClientModel.findByFacebookId.resolves({ client_id: 1, facebook_id: 'facebook_id', client_state: 'ACTIVE', birth_date: '1999-09-09',
             full_address: 'address', full_name: 'John Doe', phone_number: '123456789' });
         });
 
@@ -103,6 +101,67 @@ describe('ClientService Tests', () => {
           expect(err.statusCode).to.be(500);
           expect(err.message).to.be('Client creation error');
         });
+      });
+    });
+  });
+
+  describe('#findClient', () => {
+    let mockBody = {
+      facebook_id: 'facebook_id',
+    };
+
+    describe('client found', () => {
+      before(() => {
+        mockClientModel.findByFacebookId.resolves({ client_id: 1, facebook_id: 'facebook_id', client_state: 'ACTIVE', birth_date: '1999-09-09',
+          full_address: 'address', full_name: 'John Doe', phone_number: '123456789' });
+      });
+
+      it('returns client', async () => {
+        let client = await clientService.findClient(mockBody);
+        expect(client).to.be.ok();
+        expect(client.client_id).to.be(1);
+        expect(client.facebook_id).to.be('facebook_id');
+        expect(client.client_state).to.be('ACTIVE');
+        expect(client.birth_date).to.be('1999-09-09');
+        expect(client.full_address).to.be('address');
+        expect(client.full_name).to.be('John Doe');
+        expect(client.phone_number).to.be('123456789');
+      });
+    });
+
+    describe('client not found', () => {
+      before(() => {
+        mockClientModel.findByFacebookId.resolves();
+      });
+
+      it('throws 404 error', async () => {
+        let err;
+        try {
+          await clientService.findClient(mockBody);
+        } catch (ex) {
+          err = ex;
+        }
+        expect(err).to.be.a(BaseHttpError);
+        expect(err.statusCode).to.be(404);
+        expect(err.message).to.be('Client does not exist');
+      });
+    });
+
+    describe('find failure', () => {
+      before(() => {
+        mockClientModel.findByFacebookId.rejects(new Error('Find error'));
+      });
+
+      it('throws 500 error', async () => {
+        let err;
+        try {
+          await clientService.findClient(mockBody);
+        } catch (ex) {
+          err = ex;
+        }
+        expect(err).to.be.a(BaseHttpError);
+        expect(err.statusCode).to.be(500);
+        expect(err.message).to.be('Client find error');
       });
     });
   });

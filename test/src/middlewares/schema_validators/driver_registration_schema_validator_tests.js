@@ -21,46 +21,13 @@ describe('DriverRegistrationSchemaValidator Tests', function() {
     describe('valid request', function() {
       let request = {
         body: {
-          'facebook_id': 'facebook_id',
-          'facebook_token': 'facebook_token',
+          'facebook_id': 'facebook_id'
         },
       };
 
       it('does not return error', function(done) {
         driverRegistrationSchemaValidator.validateRequest(request, mockResponse, function(err) {
           expect(err).to.be.null;
-          done();
-        });
-      });
-    });
-
-    describe('invalid request with token', function() {
-      let request = {
-        body: {
-          'facebook_id': 'facebook_id',
-          'facebook_token': 'facebook_token',
-          'token': 'token',
-        },
-      };
-
-      it('returns error', function(done) {
-        driverRegistrationSchemaValidator.validateRequest(request, mockResponse, function(err) {
-          expect(err).to.be.ok();
-          done();
-        });
-      });
-    });
-
-    describe('invalid request without facebook_token', function() {
-      let request = {
-        body: {
-          'facebook_id': 'facebook_id',
-        },
-      };
-
-      it('returns error', function(done) {
-        driverRegistrationSchemaValidator.validateRequest(request, mockResponse, function(err) {
-          expect(err).to.be.ok();
           done();
         });
       });

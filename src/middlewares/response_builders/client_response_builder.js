@@ -7,7 +7,6 @@ function ClientResponseBuilder(logger) {
     let response = getBasicResponse();
     response.client.id = client.client_id;
     response.client.facebook_id = client.facebook_id;
-    response.client.facebook_token = client.facebook_token;
     response.client.state = client.client_state;
     response.client.birth_date = client.birth_date;
     response.client.full_address = client.full_address;
@@ -22,7 +21,6 @@ function ClientResponseBuilder(logger) {
       client: {
         id: '',
         facebook_id: '',
-        facebook_token: '',
         state: '',
         birth_date: '',
         full_address: '',
