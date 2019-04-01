@@ -109,7 +109,7 @@ describe('ClientController Tests', () => {
 
   describe('#findClient', () => {
     let mockClientRequest = {
-      params: {
+      query: {
         facebook_id: 1,
       },
     };

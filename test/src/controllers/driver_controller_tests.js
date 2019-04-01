@@ -100,7 +100,7 @@ describe('DriverController Tests', () => {
 
   describe('#findDriver', () => {
     let mockDriverRequest = {
-      params: {
+      query: {
         facebook_id: 1,
       },
     };
