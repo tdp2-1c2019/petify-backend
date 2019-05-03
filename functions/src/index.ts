@@ -19,7 +19,7 @@ async function getUser(fbid: string): Promise<any> {
   const driverProfile = driverSnapshot.val();
   const customerProfile = customerSnapshot.val();
 
-  const userProfile = {...driverProfile, ...customerProfile};
+  const userProfile = {fbid: fbid, ...driverProfile, ...customerProfile};
 
   userProfile.isDriver = Boolean(driverProfile);
   userProfile.isCustomer = Boolean(customerProfile);
@@ -37,7 +37,7 @@ userExpress.get('/', async (req: express.Request, res: express.Response) => {
     const response = await getUser(fbid);
 
     if (!response.isDriver && !response.isCustomer) {
-      return res.status(404);
+      return res.status(404).send(response);
     }
 
     return res.status(200).send(response);
