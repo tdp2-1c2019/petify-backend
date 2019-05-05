@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "petify-tdp2"
+    "default": "petify-tdp2",
+    "tdp2": "petify-tdp2"
   }
 }
