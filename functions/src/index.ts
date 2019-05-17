@@ -28,7 +28,7 @@ async function getUser(fbid: string): Promise<any> {
   const driverProfile = driverSnapshot.val();
   const customerProfile = customerSnapshot.val();
 
-  const userProfile = { fbid: fbid, ...driverProfile, ...customerProfile };
+  const userProfile = {...driverProfile, ...customerProfile};
 
   userProfile.isDriver = Boolean(driverProfile);
   userProfile.isCustomer = Boolean(customerProfile);
@@ -38,7 +38,7 @@ async function getUser(fbid: string): Promise<any> {
 
 const userExpress = express();
 userExpress.use(bodyParser.json());
-userExpress.use(bodyParser.urlencoded({ extended: false }));
+userExpress.use(bodyParser.urlencoded({extended: false}));
 
 userExpress.get("/", async (req: express.Request, res: express.Response) => {
   try {
@@ -92,7 +92,7 @@ export const asignarChoferes = functions.database.ref('/viajes/{id}').onCreate(a
     let distances = Object.keys(choferes).map(k => {
       let lat2 = choferes[k].lat;
       let lon2 = choferes[k].lat;
-      let d = ((lat - lat2)^2 + (lon-lon2)^2)^0.5;
+      let d = ((lat - lat2) ^ 2 + (lon - lon2) ^ 2) ^ 0.5;
       return {key: k, distance: d};
     });
     distances.sort((x, y) => (x.distance > y.distance) ? 1 : -1)
@@ -164,7 +164,6 @@ export const seguirBuscando = functions.https.onCall(async (data, context) => {
   await database.ref("viajes").child(viajeid).child("intentosAsignacion").set(intentos + 1)
   await database.ref("drivers").child(choferid).child("viajeAsignado").set(viajeid);
 })
-
 
 
 // cuando usuario cancela, limpiar pantalla a chofer
