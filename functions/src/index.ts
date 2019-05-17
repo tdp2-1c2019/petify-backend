@@ -116,14 +116,14 @@ export const rechazarViaje = functions.https.onCall(async (data, context) => {
   else pos = (intentos % cantChoferes) - 1
   const choferidDS = await database.ref("viajes").child(viajeid).child("drivers").child(pos.toString()).once("value")
   const choferid = choferidDS.val()
-  
+
   console.log(choferid)
   await database.ref("drivers").child(choferid).child("viajeAsignado").remove()
   console.log("asd")
 
   if (intentos < cantChoferes * 2) {
     if (intentos % 1 == 0)
-      await database.ref("viajes").child(viajeid).child("estado").set(-90)
+      await database.ref("viajes").child(viajeid).child("estado").set(90)
     else {
       const nextchoferidDS = await database.ref("viajes").child(viajeid).child("drivers").child((intentos % cantChoferes).toString()).once("value")
       const nextchoferid = nextchoferidDS.val()
@@ -131,7 +131,7 @@ export const rechazarViaje = functions.https.onCall(async (data, context) => {
       await database.ref("viajes").child(viajeid).child("intentosAsignacion").set(intentos + 1)
     }
   } else {
-    await database.ref("viajes").child(viajeid).child("estado").set(-999)
+    await database.ref("viajes").child(viajeid).child("estado").set(999)
   }
 });
 export const cancelarViaje = functions.https.onCall(async (data, context) => {
