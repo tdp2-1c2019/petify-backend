@@ -106,6 +106,7 @@ export const asignarChoferes = functions.database.ref('/viajes/{id}').onCreate(a
 });
 export const rechazarViaje = functions.https.onCall(async (data, context) => {
   const viajeid = data.viajeid;
+  const rechazaDriver = data.rechazaDriver || false;
   const intentosDS = await database.ref("viajes").child(viajeid).child("intentosAsignacion").once("value");
   const intentos: number = intentosDS.val();
   const cantChofDS = await database.ref("viajes").child(viajeid).child("cantChoferes").once("value");
@@ -133,6 +134,23 @@ export const rechazarViaje = functions.https.onCall(async (data, context) => {
   } else {
     await database.ref("viajes").child(viajeid).child("estado").set(999);
   }
+
+  const esReserva = (await database.ref("viajes").child(viajeid).child("reserva").once("value")).val();
+  if (rechazaDriver && !esReserva) {
+    const puntuacionDriverDS = await database.ref("drivers").child(choferid).child("puntuacion").once("value");
+    const puntuacionesDriverDS = await database.ref("drivers").child(choferid).child("puntuaciones").once("value");
+    const puntuacionDriver = puntuacionDriverDS.val();
+    const puntuacionesDriver = puntuacionesDriverDS.val();
+
+    const puntuacionPenalizacion = puntuacionDriver - 1;
+    const nuevaPuntuacionesDriver = puntuacionesDriver + 1;
+
+    const nuevaPuntuacion = (puntuacionDriver * puntuacionesDriver + puntuacionPenalizacion) / nuevaPuntuacionesDriver;
+
+    await database.ref("drivers").child(choferid).child("puntuacion").set(nuevaPuntuacion);
+    await database.ref("drivers").child(choferid).child("puntuaciones").set(nuevaPuntuacionesDriver);
+  }
+
 });
 export const cancelarViaje = functions.https.onCall(async (data, context) => {
   const viajeid = data.viajeid;
