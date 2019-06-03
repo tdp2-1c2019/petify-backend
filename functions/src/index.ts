@@ -147,7 +147,7 @@ export const rechazarViaje = functions.https.onCall(async (data, context) => {
 
     const nuevaPuntuacion = (puntuacionDriver * puntuacionesDriver + puntuacionPenalizacion) / nuevaPuntuacionesDriver;
 
-    await database.ref("drivers").child(choferid).child("puntuacion").set(nuevaPuntuacion);
+    await database.ref("drivers").child(choferid).child("puntuacion").set(Math.trunc(nuevaPuntuacion * 100) / 100);
     await database.ref("drivers").child(choferid).child("puntuaciones").set(nuevaPuntuacionesDriver);
   }
 
