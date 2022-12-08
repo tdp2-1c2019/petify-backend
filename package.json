@@ -16,11 +16,11 @@
     "debug": "NODE_ENV=test node ./src/app.js"
   },
   "dependencies": {
-    "body-parser": "^1.18.3",
+    "body-parser": "^1.20.1",
     "config": "^3.0.1",
     "cors": "^2.8.5",
     "dotenv": "^7.0.0",
-    "express": "^4.16.4",
+    "express": "^4.18.2",
     "express-formidable": "^1.2.0",
     "jsonschema": "^1.2.4",
     "pg": "^7.9.0",
