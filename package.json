@@ -33,7 +33,7 @@
     "expect.js": "^0.3.1",
     "eslint": "^5.15.3",
     "eslint-config-google": "^0.9.1",
-    "mocha": "^6.0.2",
+    "mocha": "^10.2.0",
     "proxyquire": "^2.1.0",
     "sinon": "^7.3.1",
     "supertest": "^4.0.2"
